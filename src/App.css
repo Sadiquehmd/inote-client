@@ -1,0 +1,10 @@
+.icon{
+    cursor: pointer;
+}
+textarea{
+height: 100px;
+resize: none;
+}
+.title,.description{
+    font-size: 25px;
+}

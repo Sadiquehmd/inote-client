@@ -1,7 +1,7 @@
 import { createContext, useReducer, useEffect } from "react";
 
 
-const host = https://inote-backend-aluh.onrender.com;
+const host = "https://inote-backend-aluh.onrender.com";
 
 export const NoteContext = createContext({
   notes: [],

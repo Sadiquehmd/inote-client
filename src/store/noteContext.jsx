@@ -1,7 +1,7 @@
 import { createContext, useReducer, useEffect } from "react";
 
 
-const host = "http://localhost:4000";
+const host = process.env.BASE_URL || "http://localhost:4000";
 
 export const NoteContext = createContext({
   notes: [],
@@ -69,7 +69,7 @@ const EditNote = async (id, title, description, tag) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZjOWM2ZWY1YmJhNjIyNzA1NTExYWU2In0sImlhdCI6MTcyNDkyMjI3M30.tLk6xpeE3IlA0EzyNX3EQDJwnqSXyF1ejKU_PiRJb78",
+        localStorage.getItem('token'),
       },
       body: JSON.stringify({
         title,
@@ -94,7 +94,7 @@ const DeleteNote = async (id, title, description, tag) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZjNTc2MTRiYjVhZmE4OWUwMmU3NDEwIn0sImlhdCI6MTcyNDIyODE0MX0.bJoVu5RSGd2MBccvJdK5WASDpnW03xcdsadxb4ivvkU",
+        localStorage.getItem('token'),
       },
     });
     if (!response.ok) {

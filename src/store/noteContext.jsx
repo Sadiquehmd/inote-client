@@ -1,7 +1,7 @@
 import { createContext, useReducer, useEffect } from "react";
 
 
-const host = import.meta.env.VITE_BASE_URL || "http://localhost:4000";
+const host = https://inote-backend-aluh.onrender.com;
 
 export const NoteContext = createContext({
   notes: [],

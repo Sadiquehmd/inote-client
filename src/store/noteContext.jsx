@@ -233,7 +233,7 @@ function NoteState({ children }) {
   return (
     <>
       <NoteContext.Provider
-        value={{ notes, deleteNote, addNote, fetchNotes, editNotes, Signup,Login }}
+        value={{ notes, deleteNote, addNote, fetchNotes, editNotes, Signup,Login,host }}
       >
         {children}
       </NoteContext.Provider>

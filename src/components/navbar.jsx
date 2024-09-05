@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { NoteContext } from "../store/noteContext";
 
 export const Navbar = () => {
   const navigate=useNavigate()
@@ -7,10 +8,11 @@ export const Navbar = () => {
   localStorage.removeItem("token");
 navigate("/login")
  }
+ const {host}=useContext(NoteContext)
 const [username,setUsername]=useState("")
   async function UserDetails()  {
   try {
-    const response = await fetch(`http://localhost:4000/api/auth/getuser`, {
+    const response = await fetch(`${host}/api/auth/getuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

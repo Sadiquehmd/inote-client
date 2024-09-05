@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
@@ -6,6 +7,31 @@ export const Navbar = () => {
   localStorage.removeItem("token");
 navigate("/login")
  }
+const [username,setUsername]=useState("")
+  async function UserDetails()  {
+  try {
+    const response = await fetch(`http://localhost:4000/api/auth/getuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+        localStorage.getItem('token'),
+      },
+     
+    });
+   
+    const status =  response.status;
+    const json = await response.json();
+    if (status == 200) {
+      setUsername(json.name)
+      
+      
+      }
+      
+  } catch (error) {
+    console.error(error.message);
+  }
+}; UserDetails()
   return (
     <>
       <div className="container-fluid">
@@ -50,7 +76,7 @@ navigate("/login")
           </ul>
 
           <div className="col-md-3 text-end">
-         {localStorage.getItem('token') ?<button className="btn btn-outline-primary me-2" onClick={handleLogout}>Logout</button>: <>  <NavLink
+         {localStorage.getItem('token') ? <> <button className="btn border-0  disabled me-2" >{username}</button> <button className="btn btn-outline-primary me-2" onClick={handleLogout}>Logout</button></>: <>  <NavLink
               to="login"
               className={({ isActive, isPending }) =>
                 isActive
